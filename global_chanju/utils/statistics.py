@@ -12,10 +12,13 @@ def f_bin(y):
         n_bin = int((max(y) - min(y)) // bw)
     return n_bin, (min(y), max(y)), bw
 
-def asym_err(y, axis=-1):
-    median = np.median(y, axis=axis)
-    lower = median - np.percentile(y, 16, axis=axis)
-    upper = np.percentile(y, 84, axis=axis) - median
+def asym_err(y, axis=-1, mode="median"):
+    if mode == "median":
+        m = np.median(y, axis=axis)
+    else:
+        m = np.mean(y, axis=axis)
+    lower = m - np.percentile(y, 16, axis=axis)
+    upper = np.percentile(y, 84, axis=axis) - m
 
     err = np.array([lower, upper])
-    return median, err
+    return m, err
