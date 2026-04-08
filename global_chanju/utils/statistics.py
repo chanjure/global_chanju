@@ -1,7 +1,11 @@
 import numpy as np
 
-def f_bin(y):
+def f_bin(y, logscale=False):
     n = len(y)
+
+    if logscale:
+        y = np.log10(y)
+
     Q1, Q3 = np.percentile(y, [25, 75])
     IQR = Q3 - Q1
     bw = 2. * IQR / np.cbrt(n)
@@ -10,7 +14,13 @@ def f_bin(y):
         print("Distribution is delta function")
     else:
         n_bin = int((max(y) - min(y)) // bw)
-    return n_bin, (min(y), max(y)), bw
+
+    if logscale:
+        bins = np.logspace(min(y), max(y), n_bin + 1)
+    else:
+        bins = np.linspace(min(y), max(y), n_bin + 1)
+
+    return n_bin, (min(y), max(y)), bins, bw
 
 def asym_err(y, axis=-1, mode="median"):
     if mode == "median":
