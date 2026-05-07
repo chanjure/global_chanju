@@ -14,7 +14,7 @@ def set_rc(scale=1.0):
     ms = 7
 
     rcParams.update({
-        'axes.prop_cycle': plt.cycler('marker', ['o','x','^','*','s','p','+','v','P','D','h','X']) + plt.cycler('linestyle', ['-','--', '-.', ':']*3),
+        'axes.prop_cycle': plt.cycler('marker', ['o','x','^','*','s','p','+','v','P','D','h','X']) + plt.cycler('linestyle', ['-','--', '-.', ':']*3) + plt.cycler('color', ["navy", "crimson", "green", "chocolate", "indigo", "darkgoldenrod"]*2),
         'figure.figsize': (W, W*r),   # 4:3 aspect ratio
         'font.size' : fonts* scale,      # Set font size to 11pt
         'axes.labelsize': fonts* scale,  # -> axis labels
@@ -44,7 +44,7 @@ def set_rc(scale=1.0):
         'text.usetex': True,
         'text.latex.preamble': (      # LaTeX preamble
             r'\usepackage{lmodern}'r'\usepackage{amsmath}'
-            r'\usepackage{amsfonts}'
+            r'\usepackage{amsfonts}'r'\usepackage{amssymb}'
             # ... more packages if needed
                                ),
         })
