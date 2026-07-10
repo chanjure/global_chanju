@@ -7,7 +7,13 @@ def neat_style(ax, n_ticks=2):
     ax.yaxis.set_minor_locator(AutoMinorLocator(n_ticks))
     ax.figure.tight_layout()
 
-def nice_style(ax, logx=False, logy=False, xlim=None, ylim=None, xlabel=None, ylabel=None, xticks=None, yticks=None, xtick_label=None, ytick_label=None):
+def colorbar(im):
+    ax = im.axes
+    fig = ax.figure
+    cax = ax.inset_axes([1.05, 0.05, 0.05, 1])
+    return fig.colorbar(im, cax=cax)
+
+def nice_style(ax, logx=False, logy=False, xlim=None, ylim=None, xlabel=None, ylabel=None, xticks=None, yticks=None, xtick_label=None, ytick_label=None, square=False):
     
     # Set labels
     if xlabel is not None:
@@ -49,6 +55,9 @@ def nice_style(ax, logx=False, logy=False, xlim=None, ylim=None, xlabel=None, yl
         pass
 
     ax.figure.tight_layout()
+
+    if square:
+        ax.set_box_aspect(1)
 
 def base_ten(x):
     if x <= 1e-15:
