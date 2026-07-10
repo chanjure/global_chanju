@@ -7,13 +7,13 @@ def neat_style(ax, n_ticks=2):
     ax.yaxis.set_minor_locator(AutoMinorLocator(n_ticks))
     ax.figure.tight_layout()
 
-def colorbar(im):
+def colourbar(im):
     ax = im.axes
     fig = ax.figure
     cax = ax.inset_axes([1.05, 0.05, 0.05, 1])
     return fig.colorbar(im, cax=cax)
 
-def nice_style(ax, logx=False, logy=False, xlim=None, ylim=None, xlabel=None, ylabel=None, xticks=None, yticks=None, xtick_label=None, ytick_label=None, square=False):
+def nice_style(ax, logx=False, logy=False, xlim=None, ylim=None, xlabel=None, ylabel=None, xticks=None, yticks=None, xtick_label=None, ytick_label=None, square=False, sciy=True):
     
     # Set labels
     if xlabel is not None:
@@ -49,10 +49,12 @@ def nice_style(ax, logx=False, logy=False, xlim=None, ylim=None, xlabel=None, yl
     if ytick_label is not None:
         ax.set_yticklabels(labels=ytick_label)
 
-    try:
-        ax.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
-    except:
-        pass
+    if sciy:
+        try:
+            ax.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
+        except:
+            print("sciy not available")
+            pass
 
     ax.figure.tight_layout()
 

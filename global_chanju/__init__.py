@@ -3,6 +3,7 @@ from .paulplot.rc_setter import set_rc
 from .paulplot.styles import neat_style
 from .paulplot.styles import nice_style
 from .paulplot.styles import base_ten
+from .paulplot.styles import colourbar
 from .utils.statistics import f_bin
 from .utils.statistics import asym_err
 
@@ -12,6 +13,7 @@ __all__ = [
         "neat_style",
         "nice_style",
         "base_ten",
+        "colourbar",
         "f_bin",
         "asym_err",
         ]
